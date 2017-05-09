@@ -1,0 +1,71 @@
+/*	Responsive Accordion v1.2, Copyright 2014, Joe Mottershaw, https://github.com/joemottershaw/
+//	============================================================================================ */
+
+/*	Table of Contents
+//	==================================================
+//		#Reset
+//		#Themes
+
+
+/*	#Reset
+//	================================================== */
+
+	.responsive-accordion {
+		margin: 0 0 20px 0;
+		padding: 0;
+		list-style-type: none;
+	}
+
+	/* For use in conjunction with the Backbone Responsive Framework - https://github.com/joemottershaw/backbone */
+		.responsive-accordion.bm-remove		{ margin-bottom: 0;    }
+		.responsive-accordion.bm-smaller	{ margin-bottom: 5px;  }
+		.responsive-accordion.bm-small		{ margin-bottom: 10px; }
+		.responsive-accordion.bm-medium		{ margin-bottom: 20px; }
+		.responsive-accordion.bm-large		{ margin-bottom: 30px; }
+		.responsive-accordion.bm-larger		{ margin-bottom: 40px; }
+
+		.responsive-accordion.tm-remove		{ margin-top: 0;    }
+		.responsive-accordion.tm-smaller	{ margin-top: 5px;  }
+		.responsive-accordion.tm-small		{ margin-top: 10px; }
+		.responsive-accordion.tm-medium		{ margin-top: 20px; }
+		.responsive-accordion.tm-large		{ margin-top: 30px; }
+		.responsive-accordion.tm-larger		{ margin-top: 40px; }
+
+	.responsive-accordion li {
+		margin: 0 0 10px 0;
+		padding: 0;
+	}
+
+	.responsive-accordion li:last-child { margin-bottom: 0; }
+
+	.responsive-accordion li .responsive-accordion-head { cursor: pointer; }
+
+	.responsive-accordion li .responsive-accordion-head.active { font-weight: bold; }
+
+
+/*	#Themes
+//	================================================== */
+
+	.responsive-accordion-default.responsive-accordion li .responsive-accordion-head {
+		border: 1px solid #DDD;
+		border-radius: 5px 5px 5px 5px;
+		padding: 5px 30px 20px 10px;
+		background-color: rgb(250, 250, 250);
+		color: #0b8593;
+		line-height: normal;
+		position: relative;
+	}
+
+	.responsive-accordion-default.responsive-accordion li .responsive-accordion-head i {
+		position: absolute;
+		top: 12px;
+		right: 10px;
+	}
+
+	.responsive-accordion-default.responsive-accordion li .responsive-accordion-panel {
+		border: 1px solid #DDD;
+		border-radius: 5px 5px 5px 5px;
+		border-top: 0;
+		padding: 20px;
+		background: #FFF;
+	}

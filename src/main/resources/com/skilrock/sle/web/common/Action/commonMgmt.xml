@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="commonMgmt" namespace="/com/skilrock/sle/web/common/Action"
+		extends="struts-default">
+		<interceptors>
+			<interceptor name="auditTrailWeb"
+				class="com.skilrock.sle.common.AuditLogInterceptor">
+				<param name="serviceName">SLE</param>
+				<param name="interfaceType">WEB</param>
+			</interceptor>
+			<interceptor name="merchantUserSessionValidation"
+				class="com.skilrock.sle.interceptor.web.SessionValidateInterceptor">
+			</interceptor>
+			<interceptor-stack name="sessionValidateStack">
+				<interceptor-ref name="auditTrailWeb"></interceptor-ref>
+				<interceptor-ref name="merchantUserSessionValidation"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+			<interceptor-stack name="customStack">
+				<interceptor-ref name="auditTrailWeb"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<global-results>
+			<result name="invalidSession">/com/skilrock/sle/web/common/merchant/nodecorate/invaidSessionPage.jsp
+			</result>
+			<result name="ALREADY_LOGGED_IN">
+				/com/skilrock/pms/web/loginMgmt/backOffice/nodecorate/loggedIn.jsp
+			</result>
+			<result name="applicationAjaxException">
+				/com/skilrock/sle/web/common/merchant/nodecorate/SLEException.jsp
+			</result>
+			<result name="applicationException">
+				/com/skilrock/sle/web/common/merchant/SLEException.jsp
+			</result>
+			<result name="unauthorize">
+				/com/skilrock/sle/web/common/merchant/unauthorize.jsp
+			</result>
+		</global-results>
+
+		<action name="export_to_excel"
+			class="com.skilrock.sle.web.common.Action.CommonMethodAction" method="exportToExcel">
+			<interceptor-ref name="customStack"></interceptor-ref>
+			<result>/</result>
+		</action>
+	</package>
+</struts>

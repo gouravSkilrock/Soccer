@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<package name="gameDataMgmtMobile"
+		namespace="/com/skilrock/sle/mobile/gameDrawData/playMgmt/Action"
+		extends="struts-default">
+		<interceptors>
+			<!-- <interceptor name="priviledges" class="com.skilrock.pms.mobile.common.privInterceptor.PrivsInterceptor"> 
+				</interceptor> -->
+			<interceptor name="auditTrailMobile" class="com.skilrock.sle.common.AuditLogInterceptor">
+				<param name="serviceName">SLE</param>
+				<param name="interfaceType">MOBILE</param>
+			</interceptor>
+			<interceptor-stack name="AuditTrailStackMobile">
+				<interceptor-ref name="auditTrailMobile"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+			<!-- <interceptor-stack name="customStack"> <interceptor-ref name="auditTrail"></interceptor-ref> 
+				<interceptor-ref name="priviledges"></interceptor-ref> <interceptor-ref name="defaultStack"></interceptor-ref> 
+				</interceptor-stack> -->
+		</interceptors>
+
+		<action name="fetchSLEDrawData"
+			class="com.skilrock.sle.mobile.gameDataMgmt.action.SportsLotteryGameDataAction"
+			method="fetchSLEDrawData">
+			<interceptor-ref name="AuditTrailStackMobile"></interceptor-ref>
+		</action>
+		<action name="fetchSLEMatchListData"
+			class="com.skilrock.sle.mobile.gameDataMgmt.action.SportsLotteryGameDataAction"
+			method="fetchSLEMatchListData">
+			<interceptor-ref name="AuditTrailStackMobile"></interceptor-ref>
+		</action>
+	</package>
+
+</struts>

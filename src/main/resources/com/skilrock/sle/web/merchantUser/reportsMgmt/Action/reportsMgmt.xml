@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="reportsMgmtForMerchantUserWeb"
+		namespace="/com/skilrock/sle/web/merchantUser/reportsMgmt/Action"
+		extends="struts-default,json-default">
+		<interceptors>
+			<interceptor name="auditTrailWeb"
+				class="com.skilrock.sle.common.AuditLogInterceptor">
+				<param name="serviceName">SLE</param>
+				<param name="interfaceType">WEB</param>
+			</interceptor>
+			<interceptor name="merchantUserSessionValidation"
+				class="com.skilrock.sle.interceptor.web.SessionValidateInterceptor">
+			</interceptor>
+			<interceptor-stack name="sessionValidateStack">
+				<interceptor-ref name="auditTrailWeb"></interceptor-ref>
+				<interceptor-ref name="merchantUserSessionValidation"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+			<interceptor-stack name="customStack">
+				<interceptor-ref name="auditTrailWeb"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<global-results>
+			<result name="invalidSession">/com/skilrock/sle/web/common/merchant/nodecorate/invaidSessionPage.jsp
+			</result>
+			<result name="ALREADY_LOGGED_IN">
+				/com/skilrock/pms/web/loginMgmt/backOffice/nodecorate/loggedIn.jsp
+			</result>
+			<result name="applicationAjaxException">
+				/com/skilrock/sle/web/common/merchant/nodecorate/SLEException.jsp
+			</result>
+			<result name="applicationException">
+				/com/skilrock/sle/web/common/merchant/SLEException.jsp
+			</result>
+			<result name="unauthorize">
+				/com/skilrock/sle/web/common/merchant/unauthorize.jsp
+			</result>
+		</global-results>
+		<!-- Game Data Report (Merchant Wise) -->
+
+		<action name="boDrawGameDataReportMenu"
+			class="com.skilrock.sle.web.merchantUser.reportsMgmt.Action.SLEGameDataReportAction"
+			method="gameDataReportMenu">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/reportsMgmt/merchant/gameDataReportMerchantWise.jsp
+			</result>
+		</action>
+
+		<action name="boDrawGameDataReportSearch"
+			class="com.skilrock.sle.web.merchantUser.reportsMgmt.Action.SLEGameDataReportAction"
+			method="gameDataReportSearch">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/reportsMgmt/merchant/nodecorate/gameDataReportResultFrame.jsp
+			</result>
+		</action>
+		<action name="gameDrawInfoDataSearch"
+			class="com.skilrock.sle.web.merchantUser.reportsMgmt.Action.SLEGameDataReportAction"
+			method="fetchDrawWiseTicketInfo">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/reportsMgmt/merchant/nodecorate/gameDrawInfoDataReportResult.jsp
+			</result>
+		</action>
+
+		<!-- Fixture Wise Winning Analysis Report Start -->
+		<action name="fixtureWiseWinningAnalysisReportMenu"
+			class="com.skilrock.sle.web.merchantUser.reportsMgmt.Action.FixtureWiseWinningAnalysisReportAction"
+			method="reportMenu">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/reportsMgmt/merchant/fixtureWiseWinningAnalysisReport_Menu.jsp
+			</result>
+		</action>
+		<action name="fixtureWiseWinningAnalysisReportDrawSearch"
+			class="com.skilrock.sle.web.merchantUser.reportsMgmt.Action.FixtureWiseWinningAnalysisReportAction"
+			method="drawSearch">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/</result>
+		</action>
+		<action name="fixtureWiseWinningAnalysisReportSearch"
+			class="com.skilrock.sle.web.merchantUser.reportsMgmt.Action.FixtureWiseWinningAnalysisReportAction"
+			method="reportSearch">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/reportsMgmt/merchant/nodecorate/fixtureWiseWinningAnalysisReport_Search.jsp
+			</result>
+		</action>
+		<!-- Fixture Wise Winning Analysis Report End -->
+
+		<!-- Merchant Wise Sale PWT Report Start -->
+		<action name="merchantWiseSalePwtReportMenu"
+			class="com.skilrock.sle.web.merchantUser.reportsMgmt.Action.MerchantWiseSalePwtReportAction"
+			method="reportMenu">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/reportsMgmt/merchant/merchantWiseSalePwtReport_Menu.jsp
+			</result>
+		</action>
+		<action name="merchantWiseSalePwtReportSearch"
+			class="com.skilrock.sle.web.merchantUser.reportsMgmt.Action.MerchantWiseSalePwtReportAction"
+			method="reportSearch">
+			<interceptor-ref name="customStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/reportsMgmt/merchant/nodecorate/merchantWiseSalePwtReport_Search.jsp
+			</result>
+		</action>
+		<!-- Merchant Wise Sale PWT Report End -->
+
+		<!-- Soccer Sale Trend Report Start -->
+		<action name="saleTrendReportMenu"
+			class="com.skilrock.sle.web.merchantUser.reportsMgmt.Action.SLEGameDataReportAction"
+			method="gameDataReportMenu">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/reportsMgmt/merchant/saleTrendReportDrawWise.jsp
+			</result>
+		</action>
+		<action name="saleTrendReportSearch"
+			class="com.skilrock.sle.web.merchantUser.reportsMgmt.Action.SLEGameDataReportAction"
+			method="getSaleTrendData">
+			<interceptor-ref name="customStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/reportsMgmt/merchant/nodecorate/saleTrendReportSearch.jsp
+			</result>
+		</action>
+		<action name="exportToExcel"
+			class="com.skilrock.sle.web.merchantUser.reportsMgmt.Action.SLEGameDataReportAction"
+			method="exportToExcel">
+			<interceptor-ref name="customStack"></interceptor-ref>
+			<result>/</result>
+		</action>
+		<!-- Soccer Sale Trend Report End -->
+		
+		<!-- Sale Report Starts -->
+			<action name="boSaleReportMenu"
+				class="com.skilrock.sle.web.merchantUser.reportsMgmt.Action.SLEGameDataReportAction"
+				method="gameDataReportMenu">
+				<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+				<result>/com/skilrock/sle/web/reportsMgmt/merchant/sleSaleReportMerchantWise.jsp
+				</result>
+			</action>
+
+			<action name="boSaleReportSearch"
+				class="com.skilrock.sle.web.merchantUser.reportsMgmt.Action.SLEGameDataReportAction"
+				method="saleReportSearch">
+				<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+				<result>/com/skilrock/sle/web/reportsMgmt/merchant/nodecorate/sleSaleReportSearch.jsp
+				</result>
+			</action>
+		
+		<!-- Sale report Ends -->
+		
+		
+		
+	</package>
+</struts>

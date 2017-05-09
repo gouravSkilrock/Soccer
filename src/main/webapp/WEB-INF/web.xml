@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<display-name></display-name>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!-- org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter -->
+
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>
+			com.skilrock.sle.filterDispatcher.SLEMgmtFilterDispatcher</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+
+	<!-- Start Json Web Service Servlet -->
+	<!--<servlet>
+		<servlet-name>jsonHandlerServlet</servlet-name>
+		<servlet-class>com.skilrock.sle.json.servlet.Home.SportsLotteryManagementServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jsonHandlerServlet</servlet-name>
+		<url-pattern>/sportsLotteryManagement</url-pattern>
+	</servlet-mapping>-->
+	<!-- End Json Web Service Servlet -->
+
+	<servlet>
+		<display-name>JAX-RS REST Servlet</display-name>
+		<servlet-name>JAX-RS REST Servlet</servlet-name>
+		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>com.sun.jersey.spi.container.ContainerResponseFilters</param-name>
+			<param-value>com.skilrock.sle.common.AuthorizationRequestFilter</param-value>
+		</init-param>
+		<init-param>
+			<param-name>com.sun.jersey.spi.container.ContainerRequestFilters</param-name>
+			<param-value>com.skilrock.sle.common.AuthorizationRequestFilter</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>JAX-RS REST Servlet</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+	<filter>
+		<filter-name>sitemesh</filter-name>
+		<filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>sitemesh</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+	
+	<servlet>
+		<servlet-name>QuartzInit</servlet-name>
+		<servlet-class>com.skilrock.sle.scheduler.common.SLESchedulerServlet</servlet-class>
+		<!-- <init-param>
+			<param-name>ticketCountCronExpr</param-name>
+			<param-value>0 30 15 1/1 * ? *</param-value>
+		</init-param>
+		<init-param>
+			<param-name>settlementJobCronExpr</param-name>
+			<param-value>0 30 15 1/1 * ? *</param-value>
+		</init-param> -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+	    <description>This is the description of my J2EE component</description>
+	    <display-name>This is the display name of my J2EE component</display-name>
+	    <servlet-name>App</servlet-name>
+	    <servlet-class>com.skilrock.lms.jnlp.App</servlet-class>
+    </servlet>
+  	<servlet-mapping>
+	    <servlet-name>App</servlet-name>
+	    <url-pattern>/applets/App.jnlp</url-pattern>
+  	</servlet-mapping>
+  	<mime-mapping>
+	    <extension>jnlp</extension>
+	    <mime-type>application/applets/x-java-jnlp-file</mime-type>
+  	</mime-mapping>
+  
+  <context-param>
+    <param-name>resteasy.scan</param-name>
+    <param-value>false</param-value>
+</context-param>
+<context-param>
+    <param-name>resteasy.scan.providers</param-name>
+    <param-value>false</param-value>
+</context-param>
+<context-param>
+    <param-name>resteasy.scan.resources</param-name>
+    <param-value>false</param-value>
+</context-param>
+</web-app>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="pwtMgmtForMerchantUserWeb"
+		namespace="/com/skilrock/sle/web/merchantUser/pwtMgmt/Action" extends="struts-default,json-default">
+
+		<interceptors>
+			<interceptor name="auditTrailWeb"
+				class="com.skilrock.sle.common.AuditLogInterceptor">
+				<param name="serviceName">SLE</param>
+				<param name="interfaceType">WEB</param>
+			</interceptor>
+			<interceptor name="merchantUserSessionValidation"
+				class="com.skilrock.sle.interceptor.web.SessionValidateInterceptor">
+			</interceptor>
+			<interceptor-stack name="sessionValidateStack">
+				<interceptor-ref name="auditTrailWeb"></interceptor-ref>
+				<interceptor-ref name="merchantUserSessionValidation"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+			<interceptor-stack name="customStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<global-results>
+			<result name="invalid">
+				/com/skilrock/sle/web/common/merchant/nodecorate/invalidSession.jsp
+			</result>
+			<result name="ALREADY_LOGGED_IN">
+				/com/skilrock/pms/web/loginMgmt/backOffice/nodecorate/loggedIn.jsp
+			</result>
+			<result name="applicationAjaxException">
+				/com/skilrock/sle/web/common/merchant/nodecorate/SLEException.jsp
+			</result>
+			<result name="applicationException">
+				/com/skilrock/sle/web/common/merchant/SLEException.jsp
+			</result>
+			<result name="unauthorize">
+				/com/skilrock/sle/web/common/merchant/unauthorize.jsp
+			</result>
+		</global-results>
+
+		<!-- BO Ticket Verification Start -->
+		<action name="verifyTicketMenu">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result name="success">/com/skilrock/sle/web/pwtMgmt/merchant/boVerifyTicketMenu.jsp
+			</result>
+		</action>
+		<action name="verifyTicketSubmit"
+			class="com.skilrock.sle.web.merchantUser.pwtMgmt.Action.BOPwtTicketAction"
+			method="verifyTicket">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result name="success">/com/skilrock/sle/web/pwtMgmt/merchant/nodecorate/boVerifyTicketSubmit.jsp
+			</result>
+		</action>
+		<!-- BO Ticket Verification End -->
+
+		<!-- Pay PWT Start -->
+		<action name="payPwt"
+			class="com.skilrock.sle.web.merchantUser.pwtMgmt.Action.BOPwtTicketAction"
+			method="payPwt">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result name="REGISTRATION">/com/skilrock/sle/web/pwtMgmt/merchant/playerRegistration.jsp
+			</result>
+			<result name="success">/com/skilrock/sle/web/pwtMgmt/merchant/boVerifyTicketSuccess.jsp
+			</result>
+		</action>
+
+		<action name="boHighPrizeORMasApproval"
+			class="com.skilrock.sle.web.merchantUser.pwtMgmt.Action.BOPwtTicketAction"
+			method="payHighPrizeORMasApproval">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/pwtMgmt/merchant/boHighPrizeORMasApprovalSuccess.jsp
+			</result>
+		</action>
+		<!-- Pay PWT End -->
+		
+		
+		<!-- Pay PWT Web Start -->
+		
+		<action name="verifyWebTicket"
+			class="com.skilrock.sle.web.merchantUser.pwtMgmt.Action.RetailerPwtWebTicketAction"
+			method="verifyTicket">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+		</action>
+		<action name="payPwtWebTicket"
+			class="com.skilrock.sle.web.merchantUser.pwtMgmt.Action.RetailerPwtWebTicketAction"
+			method="payPwtTicket">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+		</action>
+		
+		<!-- Pay PWT Web Start -->
+
+	</package>
+</struts>

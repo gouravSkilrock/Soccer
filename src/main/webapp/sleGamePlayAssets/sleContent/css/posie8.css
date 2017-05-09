@@ -1,0 +1,47 @@
+.draw-name h5, .result-name h5{
+    overflow: hidden;
+    text-align: center;
+    text-indent: -9999px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.draw-name h5:before{
+	background: url(PIE/drawName.png) no-repeat left top;
+    height: 43px;
+}
+.result-name h5:before {
+	background: url(PIE/resultsName.png) no-repeat left top;
+    height: 65px;
+}
+.draw-name h5:before, .result-name h5:before{
+	content:' ';
+	position: absolute;
+	width:12px;
+    display: block;
+    top: 0;
+    left: 0;
+    margin: auto;
+    bottom: 0;
+    right: 0;
+}
+
+.full-screen{
+	background: url(PIE/black2PX.png) repeat left top;
+	background-color:transparent;
+}
+
+.sportsLottWrap .teamTitle.row{ position:relative;}
+.sportsLottWrap .teamTitle.row > .col-xs-5{ width:50%;}
+.sportsLottWrap .teamTitle.row > .col-xs-2{ position:absolute; left:50%; top:0; margin-left:-7px;}
+.sportsLottWrapInner > li{margin: 3px 4px;}
+
+.left-draw-ui h5, .draw-name, button.select-draw, .result-name, .winning-button button, .setting-button button, .prize h5, .purchase-detail h5, .sl-div-s, .results, .draw, .tkt-no-ct input, .button-cancel button, .button-submit button, .list-prize, .buy-now, .sl-select-amt button, .sportsLottWrap .vsWrap, .buy-now button, .sportsLottWrapOuter{
+	position:relative;
+	z-index:50;
+	behavior: url(/LMSLinuxNew/css/PIE/PIE.htc);
+}
+
+.popup, .systemMSG.popup, .systemMSG1.popup1, .down-menu{behavior: url(/LMSLinuxNew/css/PIE/PIE.htc); z-index:99999;}

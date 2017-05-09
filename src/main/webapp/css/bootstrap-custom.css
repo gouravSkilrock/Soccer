@@ -1,0 +1,754 @@
+strong.draw-fnn {
+	margin-right: 10px;
+	float: left;
+	margin-top: 4px;
+}
+
+.select_dr {
+	width: 100%;
+	display: inline-block;
+	background-color: white;
+	padding: 7px 10px;
+	margin-top: 10px;
+}
+
+.timer_div {
+	position: relative;
+	margin-top: -35px !important;
+	margin-bottom: 5px;
+}
+
+.myBtn-new-div {
+	width: 42px;
+	height: 42px;
+	display: inline-block;
+	font-size: 18px;
+	font-weight: 300;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 39px;
+	vertical-align: middle;
+	border: 1px solid rgb(39, 39, 39);
+	margin-left: 24px;
+}
+
+.myBtn-active {
+	background-color: #545442;
+	color: white;
+}
+
+span.name_of_team {
+	display: block;
+	text-align: center;
+	font-size: 11.5px;
+	min-height: 30px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.scc_tm {
+	float: left;
+	width: 100%;
+	margin-top: 3%;
+}
+
+span.vs-d {
+	display: inline-block;
+	margin: 0px;
+	padding: 2px;
+	margin-top: 12px;
+	background-color: rgb(121, 121, 121);
+	border-radius: 50%;
+	width: 25px;
+	height: 25px;
+	text-align: center;
+	color: white;
+	margin-left: 0px;
+}
+
+.data_time_dv {
+	margin: 0px;
+	color: #fff;
+	background-color: #EFBA01;
+	font-size: 14px;
+	float: left;
+	width: 100%;
+	padding: 5px 5px;
+	min-height: 46px;
+	max-height: 64px;
+}
+
+.outer_div {
+	height: 200px;
+	max-height: 200px;
+	margin-top: 2%;
+}
+
+.name_hd {
+	float: left;
+	width: 100%;
+}
+
+.row-team {
+	float: left;
+	width: 100%;
+	box-shadow: 0px 2px 1px rgb(205, 205, 205);
+	margin-bottom: 25px;
+	height: 200px;
+	max-height: 200px;
+	background-color: rgb(255, 251, 237);
+	border: 1px solid rgb(229, 212, 152);
+}
+
+.row_div_team {
+	float: left;
+	width: 101%;
+}
+
+.box-team {
+	background-color: #f5f5f5;
+	float: left;
+	width: 100%;
+	border-radius: 5px;
+	border: 1px solid rgb(203, 203, 203);
+}
+
+.team_row {
+	float: left;
+	width: 100%;
+	padding: 10px 0px 20px 20px;
+	margin-top: 1%;
+}
+
+.myBtn-new-box {
+	float: left;
+	width: 30%;
+	border: 1px solid rgb(71, 71, 71);
+	text-align: center;
+	padding: 7px 0px;
+	border-radius: 4px;
+	margin-right: 8px;
+}
+
+.myBtn-new-box-active {
+	background-color: #545442;
+	color: white;
+}
+
+.league-name {
+	font-size: 12.5px;
+	color: rgb(102, 106, 145);
+	font-weight: bold;
+}
+
+span.span_print_btn {
+	padding: 4px 7px;
+	background-color: rgb(226, 226, 226);
+	border: 1px solid rgb(202, 202, 202);
+	border-radius: 2px;
+	cursor: pointer;
+	float: right;
+}
+
+h6.hm_nm {
+	margin-top: 5px;
+	font-size: 24px;
+	color: #337ab7;
+	font-weight: 300;
+	line-height: 100%;
+	text-align: center;
+	margin-bottom: 0
+}
+
+.nav>li>a:focus,.nav>li>a:hover {
+	text-decoration: none !important;
+	background-color: #F4F4F4 !important;
+}
+
+a.my-m:hover,a.my-m1:hover {
+	text-decoration: none !important;
+}
+
+h3.ui-accordion-header {
+	margin: 0px;
+}
+
+h3 a.my-m,h3 a.my-m1 {
+	font-size: 14px;
+	color: #333;
+	font-weight: bold;
+	padding-left: 18px;
+	border-bottom: 1px solid rgb(207, 207, 207);
+	display: block;
+	padding: 9px 0px 9px 36px;
+	background-color: rgb(237, 237, 237);
+}
+
+h3.ui-state-active a.my-m:before {
+	width: 0px;
+	height: 0px;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 6px solid rgb(100, 100, 100);
+	content: '';
+	margin-top: 3px;
+	position: absolute;
+	left: 20px;
+}
+
+h3 a.my-m:before {
+	width: 0px;
+	height: 0px;
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent;
+	border-left: 6px solid rgb(100, 100, 100);
+	content: '';
+	margin-top: 2px;
+	position: absolute;
+	left: 20px;
+}
+
+.navbar-static-top {
+	z-index: 0 !important;
+}
+
+.panel2 {
+	background-color: #e6e6e6;
+	border: 1px solid rgba(0, 0, 0, 0);
+	border-radius: 4px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+	margin-bottom: 20px;
+	border-color: #DDDDDD;
+}
+
+.panel3 {
+	background-color: #fafafa;
+	border: 1px solid rgba(0, 0, 0, 0);
+	border-radius: 4px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+	margin-bottom: 17px;
+	margin-left: 2px;
+	margin-top: -10px;
+	border-color: #DDDDDD;
+	padding-right: 0;
+}
+
+.panel4 {
+	background-color: #e6e6e6;
+	border: 1px solid rgba(0, 0, 0, 0);
+	border-radius: 4px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+	margin-bottom: 17px;
+	margin-left: 2px;
+	border-color: #DDDDDD;
+	margin-right: -22px
+}
+
+.panel-footer {
+	margin-top: -25px !important;
+}
+
+.table {
+	margin-bottom: -2px !important;
+}
+
+.myTextBox {
+	width: 150px;
+	margin: 40px auto;
+}
+
+.new_dv {
+	padding: 5px 0px;
+}
+
+.panel-body-new {
+	padding: 10px;
+	background-color: rgb(230, 230, 230);
+	overflow: hidden;
+}
+
+.new_div {
+	background-color: rgb(255, 251, 237);
+	padding: 15px 10px 20px 10px;
+	border: 1px solid rgb(229, 212, 152);
+	margin-top: 5px;
+	border-radius: 3px;
+	height: 171px;
+	max-height: 171px;
+	box-shadow: 0px 2px 1px rgb(205, 205, 205);
+}
+
+.span6 {
+	float: left;
+	width: 47%;
+	margin-right: 0%;
+	margin-left: 1.5%;
+	margin-top: 2%;
+	max-height: 172px;
+}
+
+.clicked {
+	background-color: green;
+}
+
+.box-top-left {
+	margin-left: -15px;
+	margin-top: -10px;
+	padding: 12px;
+	height: 80px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	float: left;
+}
+
+.col-md-12.pdb {
+	padding-bottom: 14px;
+}
+
+.box-top-right {
+	margin-top: -10px;
+	margin-left: 5px;
+	padding: 12px;
+	height: 80px
+}
+
+.box-mid-left {
+	margin-left: -15px;
+	margin-top: -15px;
+	padding: 12px;
+	height: 80px
+}
+
+.box-mid-right {
+	margin-top: -15px;
+	margin-left: 5px;
+	padding: 12px;
+	height: 80px
+}
+
+.box-bottom-left {
+	margin-left: -15px;
+	margin-top: -15px;
+	margin-bottom: -10px;
+	padding: 12px;
+	height: 80px
+}
+
+.box-bottom-right {
+	margin-left: 5px;
+	margin-top: -15px;
+	margin-bottom: -10px;
+	padding: 12px;
+	height: 80px
+}
+
+.hr-line {
+	margin-top: -25px;
+	margin-bottom: -15px
+}
+
+.team-name {
+	text-align: left;
+	margin-top: -15px
+}
+
+.center-div-left {
+	text-align: left;
+}
+
+.text-align-left {
+	text-align: left;
+}
+
+.text-align-right {
+	text-align: right;
+}
+
+.text-align-center {
+	text-align: center;
+}
+
+.navbar {
+	min-height: 0px;
+}
+
+.text-center-new h6 {
+	
+}
+
+.winning {
+	float: left;
+	width: 32%;
+	border-radius: 0px;
+	margin-left: 0%;
+	text-align: center;
+	padding: 0px 0px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border: 1px solid rgb(51, 122, 183);
+}
+
+span.vs {
+	display: inline-block;
+	margin: 0px;
+	padding: 2px;
+	margin-top: -9px;
+	background-color: rgb(121, 121, 121);
+	border-radius: 50%;
+	width: 25px;
+	height: 25px;
+	text-align: center;
+	color: white;
+	margin-left: 0px;
+}
+
+.text-align-left input {
+	
+}
+
+.text-align-center input {
+	display: inline-block !important;
+}
+
+.winning input {
+	color: #565656;
+	font-size: 14px;
+	text-transform: uppercase;
+	border: 0px;
+	width: 100%;
+	border-radius: 50px;
+	background: none;
+	outline: 0px;
+	float: left;
+	padding: 6px 0px;
+}
+
+.winning input:hover {
+	background-color: rgb(51, 122, 183);
+	border-radius: 0;
+	color: white;
+}
+
+.winning input:active {
+	background-color: rgb(51, 122, 183);
+	border-radius: 0;
+	color: white;
+}
+
+.winning a:hover {
+	text-decoration: none;
+}
+
+.myBtn {
+	text-align: center;
+	background-color: #DDDDDD;
+	color: #000000;
+	border-radius: 50%;
+	text-transform: uppercase;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 3px 13px;
+	box-shadow: 0px 2px 0px rgb(178, 178, 178);
+	border: 0px;
+	width: 80px;
+	height: 26px;
+	outline: 0px;
+}
+
+.myBtn-new {
+	text-align: center;
+	display: block;
+	background-color: #DDDDDD;
+	color: #000000;
+	border-radius: 50%;
+	text-transform: uppercase;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 3px 13px;
+	box-shadow: 0px 2px 0px rgb(178, 178, 178);
+	border: 0px;
+	max-width: 56px;
+	height: 26px;
+	outline: 0px;
+}
+
+.selected {
+	background-color: #095E9F;
+	color: white;
+	box-shadow: 0px 4px 0px rgb(10, 75, 126);
+}
+
+.text-center-new {
+	text-align: center;
+}
+
+.team-name h6 {
+	color: #333;
+	min-height: 28px;
+	margin-bottom: 0px;
+	text-align: center;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+span.displayTextBox {
+	padding: 4px 15px;
+	border: 1px solid rgb(152, 152, 152);
+}
+
+input.plus.plusminus {
+	background-color: rgb(9, 94, 159);
+	color: white;
+	border: 0px;
+	padding: 3px 8px;
+	outline: 0px;
+	border-radius: 0px 2px 2px 0px;
+}
+
+input.minus.plusminus {
+	background-color: rgb(9, 94, 159);
+	color: white;
+	border: 0px;
+	padding: 3px 8px;
+	outline: 0px;
+	border-radius: 2px 0px 0px 2px;
+}
+
+.verify-d {
+	float: left;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+input.vr-in {
+	width: 94%;
+	margin: 5px 6px 5px 6px;
+	padding: 4px 5px;
+	border-radius: 3px;
+	border: 1px solid rgb(148, 148, 148);
+	font-size: 13px;
+}
+
+.sub-mit {
+	width: 100%;
+	text-align: center;
+}
+
+#side-menu li.my-m {
+	padding: 12px 17px;
+}
+
+#side-menu li.my-m span {
+	padding-left: 20px;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+#side-menu li.my-m span:before {
+	width: 0px;
+	height: 0px;
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-top: 9px solid rgb(100, 100, 100);
+	content: '';
+	margin-top: 6px;
+	position: absolute;
+	left: 17px;
+}
+
+.span-1 {
+	float: left;
+	margin: 0px 4px;
+	width: 16%;
+}
+
+.span-2 {
+	float: left;
+	margin: 0px 22px;
+}
+
+.winMsg {
+	font-weight: bolder;
+	font: message-box;
+	color: red;
+}
+
+.sle-applet {
+	width: 100%;
+}
+
+@media screen and (min-width:1151px) and (max-width:1260px) {
+	.myBtn-new-div {
+		margin-left: 5%;
+	}
+}
+
+@media screen and (min-width:1071px) and (max-width:1150px) {
+	.myBtn-new {
+		width: 40px;
+		height: 27px;
+	}
+	.new_div {
+		min-height: 102px;
+	}
+	.span-1 {
+		float: left;
+		margin: 0px 4px;
+		width: 13%;
+	}
+	.myBtn-new-div {
+		margin-left: 3%;
+	}
+	.row-team {
+		min-height: 190px;
+	}
+}
+
+@media screen and (min-width:1024px) and (max-width:1070px) {
+	.myBtn-new-div {
+		margin-left: 2%;
+	}
+	.row-team {
+		min-height: 200px;
+	}
+}
+
+@media screen and (min-width:992px) and (max-width:1023px) {
+	.myBtn-new-div {
+		margin-left: 2%;
+	}
+	.row-team {
+		min-height: 200px;
+	}
+}
+
+@media screen and (min-width:1010px) and (max-width:1035px) {
+	.span-1 {
+		float: left;
+		margin: 0px 4px;
+		width: 18%;
+	}
+}
+
+@media screen and (min-width:961px) and (max-width:1070px) {
+	.winning input {
+		font-size: 12px;
+		width: 100%;
+		background: none;
+		padding: 4px 0px;
+		float: left;
+	}
+	.winning input:hover {
+		background-color: rgb(51, 122, 183);
+		border-radius: 0;
+		color: white;
+	}
+	.winning input:active {
+		background-color: rgb(51, 122, 183);
+		border-radius: 0;
+		color: white;
+	}
+	span.draw-dt {
+		font-size: 12px;
+	}
+	strong.draw-fn {
+		font-size: 13px;
+	}
+	.myBtn {
+		padding: 6px 13px;
+		width: 100%;
+		height: 26px;
+		outline: 0px;
+	}
+	span.vs {
+		margin-left: 24px;
+	}
+	.myBtn-new {
+		width: 33px;
+		height: 32px;
+	}
+	.new_div {
+		min-height: 105px;
+	}
+	.span-1 {
+		float: left;
+		margin: 0px 4px;
+		width: 17%;
+	}
+	.span-2 {
+		float: left;
+		margin: 0px 0px;
+		width: 15%;
+	}
+}
+
+@media screen and (min-width:768px) and (max-width:991px) {
+	.myBtn-new-div {
+		margin-left: 10%;
+	}
+}
+
+@media screen and (min-width:780px) and (max-width:960px) {
+	.winning input {
+		font-size: 10px;
+		width: 100%;
+		background: none;
+		padding: 4px 0px;
+	}
+	input.vr-in {
+		width: 94%;
+		margin: 5px 6px 5px 6px;
+		padding: 4px 4px;
+		border-radius: 3px;
+		border: 1px solid rgb(148, 148, 148);
+		font-size: 11px;
+	}
+	.winning input:hover {
+		background-color: rgb(51, 122, 183);
+		border-radius: 0;
+		color: white;
+	}
+	.winning input:active {
+		background-color: rgb(51, 122, 183);
+		border-radius: 0;
+		color: white;
+	}
+	.winMsg {
+		font-weight: bolder;
+		font: message-box;
+		color: red;
+		font-size: 11px;
+	}
+	span.draw-dt {
+		font-size: 12px;
+	}
+	strong.draw-fn {
+		font-size: 13px;
+	}
+	.myBtn {
+		padding: 6px 13px;
+		width: 100%;
+		height: 26px;
+		outline: 0px;
+		font-size: 9px;
+	}
+	.team-name h6 {
+		font-size: 10px;
+	}
+	span.vs {
+		margin-left: 0px;
+	}
+	.new_div {
+		min-height: 96px;
+	}
+	.span-1 {
+		float: left;
+		margin: 0px 4px;
+		width: 16%;
+	}
+	.span-2 {
+		float: left;
+		margin: 0px 0px;
+		width: 15%;
+	}
+}

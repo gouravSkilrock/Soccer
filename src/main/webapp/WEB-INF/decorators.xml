@@ -1,0 +1,16 @@
+<decorators defaultdir="/com/skilrock/sle/web/decorator"> 
+
+    <excludes> 
+        <pattern>/css/*</pattern> 
+        <pattern>/js/*</pattern> 
+        <pattern>/images/*</pattern> 
+        <pattern>*/login.*</pattern> 
+        <pattern>*/nodecorate*</pattern>
+        <pattern>*/com/skilrock/sle/web/decorator/web*</pattern>
+      
+    </excludes> 
+
+     <decorator name="merchantUserPage" page="merchantUserPage.jsp"> 
+    	<pattern>*/merchant/*</pattern>
+    </decorator> 
+</decorators> 

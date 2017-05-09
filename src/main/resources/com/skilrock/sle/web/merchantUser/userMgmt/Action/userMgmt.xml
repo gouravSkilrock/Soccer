@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="userMgmtForMerchantUserWeb"
+		namespace="/com/skilrock/sle/web/merchantUser/userMgmt/Action"
+		extends="struts-default,json-default">
+
+		<interceptors>
+			<interceptor name="auditTrailWeb"
+				class="com.skilrock.sle.common.AuditLogInterceptor">
+				<param name="serviceName">SLE</param>
+				<param name="interfaceType">WEB</param>
+			</interceptor>
+			<interceptor-stack name="AuditTrailStackWeb">
+				<interceptor-ref name="auditTrailWeb"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<action name="createMerchantUserData"
+			class="com.skilrock.sle.web.merchantUser.userMgmt.Action.CreateMerchantUserMenuDataAction"
+			method="getMenuDataForMerchantUser">
+			<interceptor-ref name="AuditTrailStackWeb"></interceptor-ref>
+			<result>/</result>
+		</action>
+
+	</package>
+</struts>

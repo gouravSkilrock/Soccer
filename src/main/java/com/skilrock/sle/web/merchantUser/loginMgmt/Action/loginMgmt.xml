@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="loginMgmtForMerchantUserWeb"
+		namespace="/com/skilrock/sle/web/merchantUser/loginMgmt/Action"
+		extends="struts-default,json-default">
+
+		<interceptors>
+			<interceptor name="auditTrailWeb"
+				class="com.skilrock.sle.common.AuditLogInterceptor">
+				<param name="serviceName">SLE</param>
+				<param name="interfaceType">WEB</param>
+			</interceptor>
+			<interceptor-stack name="AuditTrailStackWeb">
+				<interceptor-ref name="auditTrailWeb"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<action name="merchantUserLogin"
+			class="com.skilrock.sle.web.merchantUser.loginMgmt.Action.MerchantUserAuthenticationAction"
+			method="authenticateMerchantUser">
+			<interceptor-ref name="AuditTrailStackWeb"></interceptor-ref>
+			<result name="success">/com/skilrock/sle/web/decorator/merchant/basePage.jsp
+			</result>
+			<result name="error">/com/skilrock/sle/web/common/merchant/nodecorate/errorPage.jsp
+			</result>
+			<result name="msg">/com/skilrock/sle/web/common/merchant/nodecorate/msgPage.jsp
+			</result>
+			<result name="play">/com/skilrock/sle/web/decorator/web/slePlayOnlinePage.jsp
+			</result>
+		</action>
+
+	</package>
+</struts>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="pwtMgmtTerminal" namespace="/com/skilrock/sle/embedded/pwtMgmt/Action"
+		extends="struts-default">
+		<interceptors>
+			<interceptor name="auditTrailTerminal"
+				class="com.skilrock.sle.common.AuditLogInterceptor">
+				<param name="serviceName">SLE</param>
+				<param name="interfaceType">TERMINAL</param>
+			</interceptor>
+			<interceptor-stack name="AuditTrailStackTerminal">
+				<interceptor-ref name="auditTrailTerminal"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<action name="verifyTicket"
+			class="com.skilrock.sle.embedded.pwtMgmt.action.RetailerPwtTicketAction"
+			method="verifyTicket">
+			<interceptor-ref name="AuditTrailStackTerminal"></interceptor-ref>
+		</action>
+		<action name="payPwtTicket"
+			class="com.skilrock.sle.embedded.pwtMgmt.action.RetailerPwtTicketAction"
+			method="payPwtTicket">
+			<interceptor-ref name="AuditTrailStackTerminal"></interceptor-ref>
+		</action>
+	</package>
+</struts>

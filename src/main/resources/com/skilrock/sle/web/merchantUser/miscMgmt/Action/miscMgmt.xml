@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="miscMgmtForMerchantUserWeb"
+		namespace="/com/skilrock/sle/web/merchantUser/miscMgmt/Action"
+		extends="struts-default,json-default">
+		<interceptors>
+			<interceptor name="auditTrailWeb"
+				class="com.skilrock.sle.common.AuditLogInterceptor">
+				<param name="serviceName">SLE</param>
+				<param name="interfaceType">WEB</param>
+			</interceptor>
+			<interceptor name="merchantUserSessionValidation"
+				class="com.skilrock.sle.interceptor.web.SessionValidateInterceptor">
+			</interceptor>
+			<interceptor-stack name="sessionValidateStack">
+				<interceptor-ref name="auditTrailWeb"></interceptor-ref>
+				<interceptor-ref name="merchantUserSessionValidation"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+			<interceptor-stack name="customStack">
+				<interceptor-ref name="auditTrailWeb"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<global-results>
+			<result name="invalid">
+				/com/skilrock/sle/web/common/merchant/nodecorate/invalidSession.jsp
+			</result>
+			<result name="ALREADY_LOGGED_IN">
+				/com/skilrock/pms/web/loginMgmt/backOffice/nodecorate/loggedIn.jsp
+			</result>
+			<result name="applicationAjaxException">
+				/com/skilrock/sle/web/common/merchant/nodecorate/SLEException.jsp
+			</result>
+			<result name="applicationException">
+				/com/skilrock/sle/web/common/merchant/SLEException.jsp
+			</result>
+			<result name="unauthorize">
+				/com/skilrock/sle/web/common/merchant/unauthorize.jsp
+			</result>
+		</global-results>
+
+		<action name="updateJackpotAmountMessageMenu"
+			class="com.skilrock.sle.web.merchantUser.miscMgmt.Action.UpdateJackpotAction"
+			method="jackpotMenu">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/decorator/miscMgmt/merchant/updateJackpotMenu.jsp
+			</result>
+		</action>
+		<action name="updateJackpotAmountMessageUpdate"
+			class="com.skilrock.sle.web.merchantUser.miscMgmt.Action.UpdateJackpotAction"
+			method="updateJackpotDetails">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result name="success">/com/skilrock/sle/web/decorator/miscMgmt/merchant/updateJackpotSuccess.jsp
+			</result>
+		</action>
+	</package>
+</struts>

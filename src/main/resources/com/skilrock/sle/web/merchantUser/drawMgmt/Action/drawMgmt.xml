@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="drawMgmtForMerchantUserWeb"
+		namespace="/com/skilrock/sle/web/merchantUser/drawMgmt/Action"
+		extends="struts-default,json-default">
+		<interceptors>
+			<interceptor name="auditTrailWeb"
+				class="com.skilrock.sle.common.AuditLogInterceptor">
+				<param name="serviceName">SLE</param>
+				<param name="interfaceType">WEB</param>
+			</interceptor>
+			<interceptor name="merchantUserSessionValidation"
+				class="com.skilrock.sle.interceptor.web.SessionValidateInterceptor">
+			</interceptor>
+			<interceptor-stack name="sessionValidateStack">
+				<interceptor-ref name="auditTrailWeb"></interceptor-ref>
+				<interceptor-ref name="merchantUserSessionValidation"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+			<interceptor-stack name="customStack">
+				<interceptor-ref name="auditTrailWeb"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<global-results>
+			<result name="invalid">
+				/com/skilrock/sle/web/common/merchant/nodecorate/invalidSession.jsp
+			</result>
+			<result name="ALREADY_LOGGED_IN">
+				/com/skilrock/pms/web/loginMgmt/backOffice/nodecorate/loggedIn.jsp
+			</result>
+			<result name="applicationAjaxException">
+				/com/skilrock/sle/web/common/merchant/nodecorate/SLEException.jsp
+			</result>
+			<result name="applicationException">
+				/com/skilrock/sle/web/common/merchant/SLEException.jsp
+			</result>
+			<result name="applicationExceptionGhana">
+				/com/skilrock/sle/web/common/merchant/nodecorate/SLEExceptionResultSubmission.jsp
+			</result>
+			<result name="unauthorize">
+				/com/skilrock/sle/web/common/merchant/unauthorize.jsp
+			</result>
+		</global-results>
+
+
+		<!-- EVENT INSERTION ACTIONS -->
+		<action name="boEventInsertionMenu"
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEDrawEventInsertionAction"
+			method="drawEventInsertionMenu">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/sleEventInsertion.jsp
+			</result>
+		</action>
+		<action name="fetchTeams"
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEDrawEventInsertionAction"
+			method="fetchTeams">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/nodecorate/sleEventInsertionFrame.jsp
+			</result>
+		</action>
+		<action name="eventInsertSubmit"
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEDrawEventInsertionAction"
+			method="eventInsertionSubmit">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<interceptor-ref name="token" />
+			<result name="invalid.token">/com/skilrock/sle/web/common/merchant/nodecorate/invalidToken.jsp
+			</result>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/nodecorate/sleEventInsertionSuccess.jsp
+			</result>
+		</action>
+
+
+
+
+		<!-- EVENT MAPPING ACTIONS -->
+		<action name="boEventMappingMenu"
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEDrawEventMappingAction"
+			method="drawEventMappingMenu">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/sleEventMapping.jsp
+			</result>
+		</action>
+
+		<action name="boEventMappingCurrentDrawSearch"
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEDrawEventMappingAction"
+			method="fetchCurrentDrawList">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/</result>
+		</action>
+
+		<action name="boEventMappingEventSearch"
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEDrawEventMappingAction"
+			method="drawEventMappingEventsSearch">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/</result>
+		</action>
+
+		<action name="boEventMappingEventSubmit"
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEDrawEventMappingAction"
+			method="drawEventMappingEventsSubmit">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<interceptor-ref name="token" />
+			<result name="invalid.token">/com/skilrock/sle/web/common/merchant/invalidToken.jsp
+			</result>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/sleEventMappingSuccess.jsp
+			</result>
+		</action>
+
+		<!-- Result Submission User Assign Start -->
+		<action name="boUserAsignMenu"
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEResultUserAssignAction"
+			method="userAssignMenu">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/sleResultSubmissionUserAssign.jsp
+			</result>
+		</action>
+		<action name="getAssignedUser"
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEResultUserAssignAction"
+			method="getAssignedUser">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/</result>
+		</action>
+		<action name="userAssignSubmit"
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEResultUserAssignAction"
+			method="userAssignSubmit">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/sleResultSubmissionUserAssignSuccess.jsp
+			</result>
+		</action>
+		<!-- Result Submission User Assign End -->
+
+		<!-- Result Submission Starts -->
+		<action name="boResultSubmissionMenu"
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEResultSubmissionAction"
+			method="resultSubmissionMenu">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result name="success">/com/skilrock/sle/web/drawMgmt/merchant/sleResultSubmission.jsp</result>
+		    <result name="GHANARESULTSUBMIT">/com/skilrock/sle/web/drawMgmt/sleResultSubmissionGhana.jsp</result>
+		</action>
+		<action name="drawEventSearch"
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEResultSubmissionAction"
+			method="resultSubmissionDrawEventSearch">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result name="success">/com/skilrock/sle/web/drawMgmt/merchant/nodecorate/sleResultSubmissionFrame.jsp</result>
+		    <result name="GHANARESULTSUBMIT">/com/skilrock/sle/web/drawMgmt/merchant/nodecorate/sleResultSubmissionFrameGhana.jsp</result>
+		</action>
+		<action name="boResultSubmit"
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEResultSubmissionAction"
+			method="resultSubmissionSubmit">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result name="success">/com/skilrock/sle/web/drawMgmt/merchant/sleResultSubmissionSuccess.jsp</result>
+			<result name="GHANARESULTSUBMIT">/com/skilrock/sle/web/drawMgmt/merchant/nodecorate/sleResultSubmissionSuccessGhana.jsp</result>
+		</action>
+		
+		<action name="boSimnetResultSubmissionMenu"
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEResultSubmissionAction"
+			method="resultSubmissionMenu">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result name="success">/com/skilrock/sle/web/drawMgmt/merchant/simnetSleResultSubmission.jsp</result>
+		    <result name="GHANARESULTSUBMIT">/com/skilrock/sle/web/drawMgmt/merchant/simnetSleResultSubmission.jsp</result>
+		</action>
+		
+		<action name="SimnetResultDraws" 
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEResultSubmissionAction" 
+			method="SimnetResultDraws">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/</result>
+		</action>
+		<action name="SimnetPrizeDistribution"
+		    class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SimnetPrizeDistributionAction" 
+			method="simnetResultDatafetch">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result name="success">/com/skilrock/sle/web/drawMgmt/merchant/simnetPrizeDetail.jsp</result>
+		    <result name="error">/com/skilrock/sle/web/drawMgmt/merchant/simnetPrizeDistError.jsp</result>
+		</action>
+		<!-- Result Submission End -->
+
+		<!-- Result Approval Start -->
+		<action name="resultApprovalMenu"
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEResultApprovalAction"
+			method="resultApprovalMenu">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/sleResultApproval.jsp
+			</result>
+		</action>
+		<action name="getUnmatchedDraws"
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEResultApprovalAction"
+			method="getUnmatchedDraws">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/nodecorate/sleResultApprovalSearch.jsp
+			</result>
+		</action>
+		<action name="getUnmatchedDrawDetails"
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEResultApprovalAction"
+			method="getUnmatchedDrawDetails">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/sleResultApprovalSubmissionDetailSearch.jsp
+			</result>
+		</action>
+		<action name="resultApprovalSubmit"
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEResultApprovalAction"
+			method="resultApprovalSubmit">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/sleResultApprovalSuccess.jsp
+			</result>
+		</action>
+		<!-- Result Approval End -->
+
+
+		<!-- Track Ticket starts -->
+
+		<action name="boTrackTicketMenu">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/sleTrackTicket.jsp
+			</result>
+		</action>
+
+		<action name="boTrackSLETicket"
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.BOTrackTicketAction"
+			method="trackTicket">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/nodecorate/sleTrackTicktSuccess.jsp
+			</result>
+		</action>
+
+		<!-- Track Ticket Ends -->
+
+		<!-- Ticket Cancellation starts -->
+		<action name="boCancelTicketMenu">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/sleCancelTicket.jsp
+			</result>
+		</action>
+
+		<action name="boCancelTicket"
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.BOTicketCancelAction"
+			method="cancelTicketDetails">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/nodecorate/sleCancelTicktDetails.jsp
+			</result>
+		</action>
+		<action name="boCancelTicketSuccess"
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.BOTicketCancelAction"
+			method="cancelTicketAtBo">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/nodecorate/sleCancelTicketSuccess.jsp
+			</result>
+		</action>
+		<!-- Ticket Cancellation Ends -->
+		
+		<!-- Fetch SLE Draw Data Starts -->
+		<action name="fetchSLEDrawData"
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEGameDataAction"
+			method="fetchSLEDrawData">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+		</action>
+		<!-- Fetch SLE Draw Data Ends -->
+		
+		<!--Draw management Starts -->
+		
+			<action name="drawMgmtMenu"
+				class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEDrawMgmtAction"
+				method="fetchGameDataMenu">
+				<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+				<result>/com/skilrock/sle/web/drawMgmt/merchant/sleDrawMgmtMenu.jsp
+				</result>
+			</action>
+			
+			<action name="fetchDrawData"
+				class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEDrawMgmtAction"
+				method="fetchDrawList">
+				<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+				<result>/com/skilrock/sle/web/drawMgmt/merchant/nodecorate/sleDrawMgmtSearch.jsp
+				</result>
+			</action>
+			
+			<action name="fetchDrawDetail"
+				class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEDrawMgmtAction"
+				method="fetchDrawDetail">
+				<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+				<result>/com/skilrock/sle/web/drawMgmt/merchant/sleDrawMgmtDrawInfo.jsp
+				</result>
+			</action>
+			<action name="fetchSaleTimeChangeDrawDetail"
+				class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEDrawMgmtAction"
+				method="fetchDrawDetail">
+				<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+				<result>/com/skilrock/sle/web/drawMgmt/merchant/sleSaleTimeChangeDrawMgmtDrawInfo.jsp
+				</result>
+			</action>
+			
+			<action name="updateDrawSaleTime"
+				class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEDrawMgmtAction"
+				method="updateDrawSaleTime">
+				<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+				<result>/com/skilrock/sle/web/drawMgmt/merchant/sleDrawMgmtSuccess.jsp
+				</result>
+			</action>
+			
+			<action name="updateDrawInfo"
+				class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEDrawMgmtAction"
+				method="updateDrawInfo">
+				<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+				<result>/com/skilrock/sle/web/drawMgmt/merchant/sleDrawMgmtSuccess.jsp
+				</result>
+			</action>
+		
+		
+		<!--Draw management Ends -->
+		
+			<!-- League/Team Insertion Starts -->	
+		<action name="sleLeagueTeamInsertion" class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLELeagueTeamInsertionAction" method="drawLeagueTeamInsertionMenu">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/sleLeagueTeamInsertion.jsp</result>
+		</action>	
+		<action name="sleAddLeague"	class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLELeagueTeamInsertionAction" method="addLeague">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/nodecorate/sleLeagueInsertionSuccess.jsp</result>
+		</action>		
+		<action name="sleAddTeam" class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLELeagueTeamInsertionAction" method="addTeam">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/nodecorate/sleTeamInsertionSuccess.jsp</result>
+		</action>
+		<action name="fetchTeamsDetail" class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLELeagueTeamInsertionAction" method="fetchAllTeams">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/nodecorate/sleLeagueTeamMapping.jsp</result>
+		</action>
+		<action name="getLeagues" class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLELeagueTeamInsertionAction" method="getLeagues">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/nodecorate/sleLeague.jsp</result>
+		</action>
+		<action name="getTeams" class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLELeagueTeamInsertionAction" method="drawLeagueTeamInsertionMenu">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/nodecorate/sleUpdateTeam.jsp</result>
+		</action>
+		<action name="updateTeams" class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLELeagueTeamInsertionAction" method="updateTeams">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/nodecorate/sleTeamInsertionSuccess.jsp</result>
+		</action>	
+		<action name="mapLeagueTeam" class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLELeagueTeamInsertionAction"	method="mapLeagueTeams">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/nodecorate/sleLeagueTeamMappingSuccess.jsp</result>
+		</action>
+		<!-- League/Team Insertion Ends -->
+		<!-- SLE PcPos matchList Starts-->
+		<action name="fetchMatchlistData"
+				class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEGameDataAction"
+				method="fetchMatchlistData">
+				<result>/com/skilrock/sle/web/drawMgmt/merchant/nodecorate/sleDrawMatchListWeb.jsp
+				</result>
+		</action>
+		<!-- SLE PcPos matchList Ends-->
+		<!-- SLE PcPos Draw Results Starts-->
+		<action name="fetchSLEDrawResultData"
+				class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEGameDataAction"
+				method="fetchSLEDrawResultData">
+				<result>/com/skilrock/sle/web/drawMgmt/merchant/nodecorate/sleDrawResultWeb.jsp
+				</result>
+		</action>
+		<!-- SLE PcPos Draw Results Ends-->
+	
+		<!-- Event Management Starts -->
+		<action name="eventMgmtMenu"
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEEventManagementAction" 
+			method="createEventManagementMenu">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/sleEventManagement.jsp</result>
+		</action>
+		<action name="getGameTypeDrawInformation" 
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEEventManagementAction" 
+			method="getGameTypeDrawInformationForEventManagement">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/nodecorate/sleDrawList.jsp</result>
+		</action>
+		<action name="getMappedEventInformation" 
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEEventManagementAction" 
+			method="getMappedEventInformation">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/nodecorate/sleEventList.jsp</result>
+		</action>
+		<action name="fetchLeagueTeamData" 
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEEventManagementAction" 
+			method="fetchTeams">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+		</action>
+		<action name="updateEventInformation" 
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEEventManagementAction" 
+			method="upadteEventInformation">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/nodecorate/sleEventList.jsp</result>
+		</action>
+		<action name="fetchDrawInfoForParticularEvent" 
+			class="com.skilrock.sle.web.merchantUser.drawMgmt.Action.SLEEventManagementAction" 
+			method="fetchDrawInfoForParticularEvent">
+			<interceptor-ref name="sessionValidateStack"></interceptor-ref>
+			<result>/com/skilrock/sle/web/drawMgmt/merchant/nodecorate/sleDrawInfoForParticularEvent.jsp</result>
+		</action>
+		<!-- Event Management Ends -->
+		
+	</package>
+</struts>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant>
+	<constant name="struts.devMode" value="false"></constant>
+	<constant name="struts.custom.i18n.resources" value="SLE,global"></constant>
+
+	<include file="com/skilrock/sle/embedded/gameDataMgmt/action/gameDataMgmt.xml"></include>
+	<include file="com/skilrock/sle/mobile/gameDataMgmt/action/gameDataMgmt.xml"></include>
+	<include file="com/skilrock/sle/embedded/playMgmt/action/playMgmt.xml"></include>
+	<include file="com/skilrock/sle/embedded/reportsMgmt/action/reportsMgmt.xml"></include>
+	<include file="com/skilrock/sle/mobile/reportsMgmt/action/reportsMgmt.xml"></include>
+	
+	<include file="com/skilrock/sle/web/merchantUser/userMgmt/Action/userMgmt.xml"></include>
+	<include file="com/skilrock/sle/web/merchantUser/loginMgmt/Action/loginMgmt.xml"></include>
+	<include file="com/skilrock/sle/web/merchantUser/drawMgmt/Action/drawMgmt.xml"></include>
+	<include file="com/skilrock/sle/web/merchantUser/reportsMgmt/Action/reportsMgmt.xml"></include>
+	<include file="com/skilrock/sle/web/merchantUser/pwtMgmt/Action/pwtMgmt.xml"></include>
+	<include file="com/skilrock/sle/embedded/pwtMgmt/action/pwtMgmt.xml"></include>
+	<include file="com/skilrock/sle/web/backoffice/roleMgmt/Action/roleMgmt.xml"></include>
+	<include file="com/skilrock/sle/web/backoffice/dataMgmt/Action/dataMgmt.xml"></include>
+	<include file="com/skilrock/sle/web/common/Action/commonMgmt.xml"></include>
+	<include file="com/skilrock/sle/web/merchantUser/miscMgmt/Action/miscMgmt.xml"></include>
+	<include file="com/skilrock/sle/web/merchantUser/playMgmt/action/playMgmt.xml"></include>
+	
+</struts>

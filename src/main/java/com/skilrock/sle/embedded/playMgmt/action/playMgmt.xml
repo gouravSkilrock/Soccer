@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<package name="playMgmtTerminal"
+		namespace="/com/skilrock/sle/embedded/playMgmt/Action"
+		extends="struts-default">
+		<interceptors>
+			<!-- <interceptor name="priviledges" class="com.skilrock.pms.mobile.common.privInterceptor.PrivsInterceptor"> 
+				</interceptor> -->
+			<interceptor name="auditTrailTerminal" class="com.skilrock.sle.common.AuditLogInterceptor">
+				<param name="serviceName">SLE</param>
+				<param name="interfaceType">TERMINAL</param>
+			</interceptor>
+			<interceptor-stack name="AuditTrailStackTerminal">
+				<interceptor-ref name="auditTrailTerminal"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+			<!-- <interceptor-stack name="customStack"> <interceptor-ref name="auditTrail"></interceptor-ref> 
+				<interceptor-ref name="priviledges"></interceptor-ref> <interceptor-ref name="defaultStack"></interceptor-ref> 
+				</interceptor-stack> -->
+		</interceptors>
+
+		<action name="sportsLotteryPurchaseTicket"
+			class="com.skilrock.sle.embedded.playMgmt.action.SportsLotteryGamePlayAction"
+			method="sportsLotteryPurchaseTicket">
+			<interceptor-ref name="AuditTrailStackTerminal"></interceptor-ref>
+		</action>
+		
+		<action name="sportsLotteryPurchaseTicketNew"
+			class="com.skilrock.sle.embedded.playMgmt.action.SportsLotteryGamePlayActionNew"
+			method="sportsLotteryPurchaseTicket">
+			<interceptor-ref name="AuditTrailStackTerminal"></interceptor-ref>
+		</action>
+		
+		<action name="cancelTicket"
+			class="com.skilrock.sle.embedded.playMgmt.action.SportsLotteryCancelTicketAction"
+			method="cancelTicket">
+			<interceptor-ref name="AuditTrailStackTerminal"></interceptor-ref>
+		</action>
+		
+		<action name="reprintTicket"
+			class="com.skilrock.sle.embedded.playMgmt.action.SportsLotteryTerminalGameTicketReprintAction"
+			method="reprintTicket">
+		<interceptor-ref name="AuditTrailStackTerminal"></interceptor-ref>
+		</action>
+	</package>
+
+</struts>
